@@ -27,7 +27,4 @@ public class CandidateEntity {
 
     public CandidateEntity() {
     }
-
-
-
 }
