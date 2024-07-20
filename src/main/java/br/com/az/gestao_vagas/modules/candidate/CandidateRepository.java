@@ -6,7 +6,7 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CandidateRepository extends JpaRepository<CandidateEntity, UUID> {
-    
+
     // pq e quando é bom usar Optional
     Optional<CandidateEntity> findByUsernameOREmail(String username, String email);
 
