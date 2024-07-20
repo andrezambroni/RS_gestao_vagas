@@ -25,9 +25,9 @@ public class JobEntity {
     private String description;
     private String benefits;
     private String level;
-    
+
     @ManyToOne()
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id", insertable = false, updatable = false)
     private CompanyEntity companyEntity;
 
     @Column(name = "company_id")
@@ -35,5 +35,5 @@ public class JobEntity {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
-    
+
 }
