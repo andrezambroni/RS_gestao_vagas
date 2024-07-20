@@ -10,19 +10,22 @@ import br.com.az.gestao_vagas.modules.candidate.CandidateRepository;
 @Service
 public class CreateCandidateUseCase {
 
-    //pq eu tenho que passar CandidateEntity candidateEntity, o que é cada um
     @Autowired
     private CandidateRepository candidateRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public CandidateEntity execute(CandidateEntity candidateEntity) {
-        this.candidateRepository
-                .findByUsernameOREmail(candidateEntity.getUsername(), candidateEntity.getEmail())
-                .ifPresent((user) -> {
-                    throw new UserFoundException();
-                });
+        this.candidateRepository.findByUsernameOrEmail(candidateEntity.getUsername(),
+                candidateEntity.getEmail()).ifPresent(user -> {
+            throw new UserFoundException();
+        });
+
+        var password = passwordEncoder.encode(candidateEntity.getPassword());
+        candidateEntity.setPassword(password);
 
         return this.candidateRepository.save(candidateEntity);
-
     }
 
 }
