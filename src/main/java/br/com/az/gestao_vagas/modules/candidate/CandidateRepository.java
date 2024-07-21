@@ -11,3 +11,12 @@ public interface CandidateRepository extends JpaRepository<CandidateEntity, UUID
     Optional<CandidateEntity> findByUsernameOREmail(String username, String email);
 
 }
+
+//Optional<CandidateEntity>: O método retorna um Optional de CandidateEntity.
+//Optional é uma classe que pode conter um valor ou estar vazia (null). Ele ajuda a evitar problemas com null.
+
+//findByUsernameOREmail: Nome do método.
+// De acordo com a convenção do Spring Data JPA, ele vai gerar uma consulta que procura por um
+//CandidateEntity com username ou email correspondentes.
+
+//Parâmetros (String username, String email): Esses são os valores que serão usados na consulta.

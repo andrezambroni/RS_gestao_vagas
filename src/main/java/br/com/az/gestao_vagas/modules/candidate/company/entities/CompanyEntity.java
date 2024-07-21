@@ -16,19 +16,20 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
-// pq fazer isso na entity
-// pq tem q ter entity
+// name = "company": Define o nome da tabela no banco de dados como company.
+// Sem essa anotação, o nome da tabela seria o mesmo nome da classe (CompanyEntity).
 @Entity(name = "company")
 public class CompanyEntity {
 
-    // pq passa id
-    // pq passa esse GeneratedValue e tambem o que esta em ( )
+    //strategy = GenerationType.UUID: Especifica como o valor da chave primária será gerado.
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @NotBlank
+    
+    @NotBlank // Garante que o campo username não seja nulo e não contenha apenas espaços em branco.
     @Pattern(regexp = "\\S+", message = "O campo [username] nao deve contar espaco")
+    //Garante que o username não contenha espaços. O regex \\S+ assegura que o campo deve conter pelo menos um caractere não espaço.
     private String username;
 
     @Email(message = "O campo [email] deve conter um email valido")
